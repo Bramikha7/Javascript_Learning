@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Assessment</title>
+  </head>
+  <style>
+    body h1{
+        text-align: center;
+    }
+    #searchInput{
+     margin-left: 630px;
+    }
+    #searchbtn{
+       background-color: lightskyblue;
+       border-radius: 8px;
+    }
+    .table{
+      margin-left: 230px;
+      margin-top: 100px;
+      width: 1000px;
+      padding: 20px;
+      border: 1px solid black;
+      border-radius: 8px;
+    }
+    .head{
+        background-color: lightskyblue;
+    }
+  </style>
+  <body>
+    <h1>Employee Directory</h1>
+    <input type="search" id="searchInput" placeholder="Search Here" />
+    <button type="button" id="searchbtn">Search</button>
+
+    <table class="table">
+      <thead class="head">
+        <tr>
+          <th>Name</th>
+          <th>Role</th>
+          <th>City</th>
+        </tr>
+      </thead>
+      <tbody id="table1"></tbody>
+    </table>
+  </body>
+  <script>
+    const employees = [
+      { name: "Zoya", role: "UI Designer", city: "Mumbai" },
+      { name: "Aarush", role: "Frontend Developer", city: "Pune" },
+      { name: "Myra", role: "QA Engineer", city: "Bangalore" },
+      { name: "Vivaan", role: "Backend Developer", city: "Hyderabad" },
+      { name: "Tara", role: "HR Manager", city: "Chennai" },
+      { name: "Neil", role: "Full Stack Developer", city: "Delhi" },
+      { name: "Kiara", role: "Product Manager", city: "Kolkata" },
+      { name: "Dhruv", role: "DevOps Engineer", city: "Ahmedabad" },
+      { name: "Anaya", role: "Software Tester", city: "Jaipur" },
+      { name: "Rishabh", role: "Mobile Developer", city: "Indore" },
+    ];
+    const employee = document.getElementById("table1");
+    function display(employees) {
+      employee.innerHTML=""
+      employees.forEach(myFunction);
+      function myFunction(item) {
+        const container1= document.createElement("tr");
+        const item1 = document.createElement("td");
+        item1.innerText = item.name;
+        const item2 = document.createElement("td");
+        item2.innerText = item.role;
+        const item3 = document.createElement("td");
+        item3.innerText = item.city;
+        container1.appendChild(item1);
+        container1.appendChild(item2);
+        container1.appendChild(item3);
+        employee.appendChild(container1);
+        employee.style.textAlign="center"
+        item1.style.border="1px solid black"
+        item2.style.border="1px solid black"
+        item3.style.border="1px solid black"
+      }
+      console.log(employee);
+    }
+    display(employees);
+    const btn=document.getElementById("searchbtn")
+    btn.addEventListener("click",filterEmployee);
+    function filterEmployee(){
+        const key=document.getElementById("searchInput").value
+        console.log(key)
+        const filteredArr=employees.filter(myFunction)
+        function myFunction(item){
+            if (item.name.toLowerCase().includes(key.toLowerCase())){
+                return item
+            }
+        }
+        console.log(filteredArr);
+        display(filteredArr)
+    }
+  </script>
+</html>
