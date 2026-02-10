@@ -32,6 +32,7 @@
     <input type="search" id="searchInput" placeholder="Search Here" />
     <button type="button" id="btnId">Search</button>
     <p id="demo"></p>
+    <div id="countEle"></div>
   </body>
   <script>
     const books = [
@@ -90,7 +91,7 @@
     ];
     const x = document.getElementById("demo");
     function display(books) {
-      x.innerHTML ="";
+      x.innerHTML = "";
       books.forEach(myFunction);
 
       function myFunction(item) {
@@ -127,8 +128,17 @@
           return item;
         }
       }
+      const count = document.getElementById("countEle");
+      count.innerText = filteredArr.length.toString() + " " + "results found";
+      console.log(count);
+
       console.log(filteredArr);
       display(filteredArr);
+      if (filteredArr.length === 0) {
+        const noresult = document.createElement("div");
+        noresult.innerText = "No results found";
+        x.appendChild(noresult);
+      }
     }
   </script>
 </html>
