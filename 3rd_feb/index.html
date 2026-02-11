@@ -96,21 +96,27 @@
 
       function myFunction(item) {
         const card = document.createElement("div");
-        const img = document.createElement("img");
-        img.src = item.poster;
-        const y = document.createElement("div");
-        y.innerText = item.name;
-        const rate = document.createElement("p");
-        rate.innerText = item.rating;
-        const sum = document.createElement("p");
-        sum.innerText = item.summary;
-        const newLine = document.createElement("div");
-        newLine.appendChild(y);
-        newLine.appendChild(rate);
-        newLine.classList.add("line");
-        card.appendChild(img);
-        card.appendChild(newLine);
-        card.appendChild(sum);
+        card.innerHTML=`<img src="${item.poster}"/>
+        <div class="line">
+          <h6>${item.name}</h6>
+          <div>${item.rating}</div>
+          </div>
+          <p>${item.summary}</p>`;
+        // const img = document.createElement("img");
+        // img.src = item.poster;
+        // const y = document.createElement("div");
+        // y.innerText = item.name;
+        // const rate = document.createElement("p");
+        // rate.innerText = item.rating;
+        // const sum = document.createElement("p");
+        // sum.innerText = item.summary;
+        // const newLine = document.createElement("div");
+        // newLine.appendChild(y);
+        // newLine.appendChild(rate);
+        // newLine.classList.add("line");
+        // card.appendChild(img);
+        // card.appendChild(newLine);
+        // card.appendChild(sum);
         card.classList.add("card");
         x.appendChild(card);
       }
