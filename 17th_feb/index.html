@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>product</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+background: #E6E2E2;
+padding: 20px;
+margin: 0;
+}
+#demo {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 20px;
+max-width: 1200px;
+margin: auto;
+}
+.card {
+width: 250px;
+background: #FFFFFF;
+padding: 15px;
+border-radius: 10px;
+box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+transition: 0.2s;
+text-align: center;
+}
+.product-img {
+width: 100%;
+height: 180px;
+object-fit: contain;
+margin-bottom: 10px;
+}
+.card h3 {
+font-size: 16px;
+margin: 10px 0;
+}
+.card p {
+font-size: 14px;
+margin: 5px 0;
+color: #555;
+}
+.card i {
+font-size: 13px;
+color: #777;
+}
+
+.product-img {
+width: 100%;
+height: 180px;
+object-fit: contain;
+margin-bottom: 10px;
+}
+</style>
+</head>
+<body>
+<div id="demo"></div>
+
+<script>
+const container = document.getElementById("demo");
+fetch("https://fakestoreapi.com/products")
+.then((response) => response.json())
+.then((data) => {
+console.log(data);
+
+function createUserCard(data) {
+const card = document.createElement("div");
+card.classList.add("card");
+
+card.innerHTML = `
+<h3>${data.title}</h3>
+<p>${data.price}</p>
+<p>${data.description.split(" ").slice(0,15).join(" ")} </p>
+<p>${data.category}</p>
+<img src="${data.image}" alt="${data.title}" class="product-img">
+<i>${data.rating.rate}</i>
+<i>${data.rating.count}</i>
+`;
+container.appendChild(card);
+}
+
+data.forEach(createUserCard);
+})
+.catch((error) => console.log(error));
+</script>
+</body>
+</html>
